@@ -1,0 +1,10 @@
+{
+  "description": {
+    "language": "dotnet-isolated",
+    "extensions": [ ".dll" ],
+    "defaultExecutablePath": "dotnet",
+    "defaultWorkerPath": "order_tracker---iot_project.dll",
+    "workerIndexing": "true",
+    "canUsePlaceholder": true
+  }
+}

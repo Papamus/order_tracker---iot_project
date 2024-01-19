@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "order_tracker___iot_project": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7110",
+      "launchBrowser": false
+    }
+  }
+}
