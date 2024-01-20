@@ -3,6 +3,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using OrderTracker.Database;
 using Microsoft.EntityFrameworkCore;
+using OrderTracker.Commands;
 
 var host = new HostBuilder()
     .ConfigureFunctionsWorkerDefaults()
@@ -14,6 +15,7 @@ var host = new HostBuilder()
         // });
         services.AddApplicationInsightsTelemetryWorkerService();
         services.ConfigureFunctionsApplicationInsights();
+        services.AddSingleton<DatabaseOrderService>();
     })
     .Build();
 
