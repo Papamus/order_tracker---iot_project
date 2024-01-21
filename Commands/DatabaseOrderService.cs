@@ -18,9 +18,7 @@ namespace OrderTracker.Commands
             {
                 CustomerName = orderEntity.CustomerName,
                 Price = orderEntity.Price,
-                Date = orderEntity.Date,
                 Status = orderEntity.Status,
-                ModifiedStatus = orderEntity.ModifiedStatus
             };
             db.Orders.Add(entity);
             db.SaveChanges();
@@ -32,6 +30,7 @@ namespace OrderTracker.Commands
         {
             var orderList = db.Orders.Select(s => new OrderEntity
             {
+                Id = s.Id,
                 CustomerName = s.CustomerName,
                 Price = s.Price,
                 Date = s.Date,
