@@ -11,3 +11,10 @@ GET https://order-tracker-iot-26771.azurewebsites.net/api/OrderFn?code=SVC7d6FFU
 Content-Type: application/json
 
 {}
+
+DELETE https://order-tracker-iot-26771.azurewebsites.net/api/OrderFn?code=SVC7d6FFU-akKbECnPtpayVPvYi_Jl40ara5505H9brmAzFuI1a_eA== HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id": 1
+}

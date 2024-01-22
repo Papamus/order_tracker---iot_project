@@ -21,7 +21,7 @@ namespace OrderTracker.Functions
         }
 
         [Function("OrderFn")]
-        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
+        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", "delete")] HttpRequestData req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
@@ -45,13 +45,13 @@ namespace OrderTracker.Functions
                     var getorder = databaseOrderService.GetOrderEntities();
                     response.WriteAsJsonAsync(getorder);
                     break;
-                // case "DELETE":
-                    // StreamReader deleteReader = new StreamReader(req.Body, System.Text.Encoding.UTF8);
-                    // var deleteJson = deleteReader.ReadToEnd();
-                    // var personToDelete = JsonSerializer.Deserialize<Person>(deleteJson);
-                    // peopleService1.Delete(personToDelete.Id);
-                    // response.WriteString("Person deleted successfully");
-                    // break;   
+                case "DELETE":
+                    StreamReader deleteReader = new StreamReader(req.Body, System.Text.Encoding.UTF8);
+                    var deleteJson = deleteReader.ReadToEnd();
+                    var orderToDelete = JsonSerializer.Deserialize<OrderEntity>(deleteJson);
+                    databaseOrderService.DeleteOrder(orderToDelete.Id);
+                    response.WriteString("Order deleted successfully");
+                    break;   
             }
             return response;
         }

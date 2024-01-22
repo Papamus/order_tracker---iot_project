@@ -7,6 +7,8 @@ namespace OrderTracker.Commands
         IEnumerable<OrderEntity> GetOrderEntities();
 
         OrderEntity AddOrder(OrderEntity orderEntity);
+
+        void DeleteOrder(int orderId);
     }
 
 }

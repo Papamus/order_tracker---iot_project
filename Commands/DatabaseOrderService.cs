@@ -26,6 +26,17 @@ namespace OrderTracker.Commands
             return orderEntity;
         }
 
+        public void DeleteOrder(int orderId)
+        {
+            var orderToDelete = db.Orders.Find(orderId);
+
+            if (orderToDelete != null)
+            {
+                db.Orders.Remove(orderToDelete);
+                db.SaveChanges();
+            }
+        }
+
         public IEnumerable<OrderEntity> GetOrderEntities()
         {
             var orderList = db.Orders.Select(s => new OrderEntity

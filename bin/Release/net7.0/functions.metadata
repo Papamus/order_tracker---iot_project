@@ -15,7 +15,8 @@
         "authLevel": "Function",
         "methods": [
           "get",
-          "post"
+          "post",
+          "delete"
         ],
         "properties": {}
       },
