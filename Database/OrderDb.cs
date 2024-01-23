@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OrderTracker.Database.Entities;
 
 namespace OrderTracker.Database
@@ -19,7 +20,7 @@ namespace OrderTracker.Database
         {
             entity.ToTable("Order");
             entity.Property(p => p.CustomerName).IsRequired().HasMaxLength(200);
-            entity.Property(p => p.Status).IsRequired();
+            entity.Property(p => p.Status).IsRequired().HasConversion(new EnumToStringConverter<OrderStatus>());
             entity.Property(p => p.Price).IsRequired();
         }
 

@@ -52,13 +52,13 @@ namespace OrderTracker.Functions
                     databaseOrderService.DeleteOrder(orderToDelete.Id);
                     response.WriteString("Order deleted successfully");
                     break;   
-                // case "FIND":
-                //     StreamReader findReader = new StreamReader (req.Body, System.Text.Encoding.UTF8);
-                //     var findJson = findReader.ReadToEnd();
-                //     var orderStatusToFind = JsonSerializer.Deserialize<OrderEntity>(findJson);
-                //     databaseOrderService.FindOrderByStatus(orderStatusToFind.Status);
-                //     response.WriteAsJsonAsync(orderStatusToFind);
-                //     break;
+                case "FIND":
+                    StreamReader findReader = new StreamReader (req.Body, System.Text.Encoding.UTF8);
+                    var findJson = findReader.ReadToEnd();
+                    var orderStatusToFind = JsonSerializer.Deserialize<OrderEntity>(findJson);
+                    var foundOrders = databaseOrderService.FindOrderByStatus(orderStatusToFind.Status);
+                    response.WriteAsJsonAsync(foundOrders);
+                    break;
             }
             return response;
         }

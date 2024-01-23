@@ -10,9 +10,9 @@ namespace OrderTracker.Commands
 
         void DeleteOrder(int orderId);
 
-        OrderEntity UpdateOrderStatus(int id, string status);
+        OrderEntity UpdateOrderStatus(int id, OrderStatus status);
 
-        IEnumerable<OrderEntity> FindOrderByStatus(string status);
+        IEnumerable<OrderEntity> FindOrderByStatus(OrderStatus status);
     }
 
 }

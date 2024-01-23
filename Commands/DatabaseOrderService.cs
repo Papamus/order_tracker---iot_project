@@ -1,4 +1,5 @@
 using System.Data;
+using Microsoft.EntityFrameworkCore;
 using OrderTracker.Database;
 using OrderTracker.Database.Entities;
 
@@ -50,9 +51,9 @@ namespace OrderTracker.Commands
                 ModifiedStatus = s.ModifiedStatus
             });
 
-            return orderList;
+            return orderList.AsNoTracking().ToList();
         }
-        public OrderEntity UpdateOrderStatus(int orderId, string status)
+        public OrderEntity UpdateOrderStatus(int orderId, OrderStatus status)
         {
             var orderToUpdate = db.Orders.Find(orderId);
             if (orderToUpdate != null || orderToUpdate.Status != status)
@@ -64,7 +65,7 @@ namespace OrderTracker.Commands
             return orderToUpdate;
         }
 
-        public IEnumerable<OrderEntity> FindOrderByStatus(string status)
+        public IEnumerable<OrderEntity> FindOrderByStatus(OrderStatus status)
         {
             return db.Orders.Where(order => order.Status == status).ToList();
         }
