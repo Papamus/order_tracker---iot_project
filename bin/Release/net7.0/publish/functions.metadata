@@ -16,7 +16,9 @@
         "methods": [
           "get",
           "post",
-          "delete"
+          "delete",
+          "put",
+          "find"
         ],
         "properties": {}
       },

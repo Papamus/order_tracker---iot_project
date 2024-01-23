@@ -1,6 +1,5 @@
 namespace OrderTracker.Database.Entities
 {
-
     public class OrderEntity
     {   
         public int Id {get;set;}

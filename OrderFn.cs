@@ -21,7 +21,7 @@ namespace OrderTracker.Functions
         }
 
         [Function("OrderFn")]
-        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", "delete")] HttpRequestData req)
+        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", "delete", "put", "find")] HttpRequestData req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
@@ -35,12 +35,12 @@ namespace OrderTracker.Functions
                     response.WriteAsJsonAsync(res);
                     break;
                 case "PUT":
-                    // StreamReader putReader = new StreamReader(req.Body, System.Text.Encoding.UTF8);
-                    // var putJson = putReader.ReadToEnd();
-                    // var updatedPerson = JsonSerializer.Deserialize<Person>(putJson);
-                    // var putPerson = peopleService1.Update(updatedPerson.Id, updatedPerson.FirstName, updatedPerson.LastName);
-                    // response.WriteAsJsonAsync(putPerson);
-                    // break;
+                    StreamReader putReader = new StreamReader(req.Body, System.Text.Encoding.UTF8);
+                    var putJson = putReader.ReadToEnd();
+                    var updatedOrder = JsonSerializer.Deserialize<OrderEntity>(putJson);
+                    var updateOrderStatus = databaseOrderService.UpdateOrderStatus(updatedOrder.Id, updatedOrder.Status);
+                    response.WriteAsJsonAsync(updateOrderStatus);
+                    break;
                 case "GET":
                     var getorder = databaseOrderService.GetOrderEntities();
                     response.WriteAsJsonAsync(getorder);
@@ -52,6 +52,13 @@ namespace OrderTracker.Functions
                     databaseOrderService.DeleteOrder(orderToDelete.Id);
                     response.WriteString("Order deleted successfully");
                     break;   
+                // case "FIND":
+                //     StreamReader findReader = new StreamReader (req.Body, System.Text.Encoding.UTF8);
+                //     var findJson = findReader.ReadToEnd();
+                //     var orderStatusToFind = JsonSerializer.Deserialize<OrderEntity>(findJson);
+                //     databaseOrderService.FindOrderByStatus(orderStatusToFind.Status);
+                //     response.WriteAsJsonAsync(orderStatusToFind);
+                //     break;
             }
             return response;
         }

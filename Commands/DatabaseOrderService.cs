@@ -1,3 +1,4 @@
+using System.Data;
 using OrderTracker.Database;
 using OrderTracker.Database.Entities;
 
@@ -51,6 +52,23 @@ namespace OrderTracker.Commands
 
             return orderList;
         }
+        public OrderEntity UpdateOrderStatus(int orderId, string status)
+        {
+            var orderToUpdate = db.Orders.Find(orderId);
+            if (orderToUpdate != null || orderToUpdate.Status != status)
+            {
+                orderToUpdate.Status = status;
+                orderToUpdate.ModifiedStatus = DateTime.Now;
+                db.SaveChanges();
+            }
+            return orderToUpdate;
+        }
+
+        public IEnumerable<OrderEntity> FindOrderByStatus(string status)
+        {
+            return db.Orders.Where(order => order.Status == status).ToList();
+        }
+
     }
 
 
