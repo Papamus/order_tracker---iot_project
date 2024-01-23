@@ -56,8 +56,8 @@ namespace OrderTracker.Functions
                     StreamReader findReader = new StreamReader (req.Body, System.Text.Encoding.UTF8);
                     var findJson = findReader.ReadToEnd();
                     var orderStatusToFind = JsonSerializer.Deserialize<OrderEntity>(findJson);
-                    databaseOrderService.FindOrderByStatus(orderStatusToFind.Status);
-                    response.WriteAsJsonAsync(orderStatusToFind);
+                    var foundOrders = databaseOrderService.FindOrderByStatus(orderStatusToFind.Status);
+                    response.WriteAsJsonAsync(foundOrders);
                     break;
             }
             return response;
