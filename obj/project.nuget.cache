@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "CgDWtGRAUQUD5PvmE6nOQ2DO9HZgXVB+OyzSbliiG1W1g3qR6Uux1NuJXFDTgfJH5B/CFn1zSZL8LfJRhOAMRA==",
+  "dgSpecHash": "9WRxlHr8Fh5MmrJ41tU6fbP01pcbZTS6KlAFsJpgOjisRsw9kMMtIFHkbctOyej//bjVGPMrEsHhYz9wNw3/fw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Adam\\Desktop\\git\\iot_project\\order_tracker---iot_project\\order_tracker---iot_project.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Adam\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Adam\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\Adam\\.nuget\\packages\\csvhelper\\30.0.3\\csvhelper.30.0.3.nupkg.sha512",
     "C:\\Users\\Adam\\.nuget\\packages\\google.protobuf\\3.23.3\\google.protobuf.3.23.3.nupkg.sha512",
     "C:\\Users\\Adam\\.nuget\\packages\\grpc.core.api\\2.55.0\\grpc.core.api.2.55.0.nupkg.sha512",
     "C:\\Users\\Adam\\.nuget\\packages\\grpc.net.client\\2.55.0\\grpc.net.client.2.55.0.nupkg.sha512",

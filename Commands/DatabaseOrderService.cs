@@ -70,6 +70,4 @@ namespace OrderTracker.Commands
         }
 
     }
-
-
 }
