@@ -1,5 +1,57 @@
 [
   {
+    "name": "ExportFn",
+    "scriptFile": "order_tracker---iot_project.dll",
+    "entryPoint": "OrderTracker.Functions.ExportFn.Run",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "req",
+        "direction": "In",
+        "type": "httpTrigger",
+        "authLevel": "Function",
+        "methods": [
+          "get"
+        ],
+        "properties": {}
+      },
+      {
+        "name": "$return",
+        "type": "http",
+        "direction": "Out"
+      }
+    ]
+  },
+  {
+    "name": "ExportToXml",
+    "scriptFile": "order_tracker---iot_project.dll",
+    "entryPoint": "OrderTracker.Functions.ExportToXml.Run",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "req",
+        "direction": "In",
+        "type": "httpTrigger",
+        "authLevel": "Function",
+        "methods": [
+          "get"
+        ],
+        "properties": {}
+      },
+      {
+        "name": "$return",
+        "type": "http",
+        "direction": "Out"
+      }
+    ]
+  },
+  {
     "name": "OrderFn",
     "scriptFile": "order_tracker---iot_project.dll",
     "entryPoint": "OrderTracker.Functions.OrderFn.Run",

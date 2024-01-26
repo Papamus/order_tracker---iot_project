@@ -1,6 +1,5 @@
 using System.Globalization;
 using System.Net;
-using CsvHelper;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
@@ -28,35 +27,40 @@ namespace OrderTracker.Functions
             var response = req.CreateResponse(HttpStatusCode.OK);
             response.Headers.Add("Content-Type", "text/csv; charset=utf-8");
 
+            // var reader = new StreamReader(req.Body, System.Text.Encoding.UTF8);
+            // switch (reader.ToString()){
+            //     case "xls":
+            //         try
+            //         {
+            //             response.Headers.Add("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            //             response.Headers.Add("Content-Disposition", "attachment; filename=orders.xlsx");
+            //             response.WriteString(databaseOrderService.ExportToExcel());
+            //         }
+            //         catch(Exception exception)
+            //         {
+            //             _logger.LogError($"Error exporting data to Excel: {exception.Message}");
+            //             response = req.CreateResponse(HttpStatusCode.InternalServerError);
+            //             response.WriteString($"Error: {exception.Message}");
+            //         }
+            //         break;
+
+            //     default:
+            //         try 
+            //         {
+            //             response.WriteString(databaseOrderService.ExportToCsv());
+            //         }
+            //         catch(Exception exception)
+            //         {
+            //             _logger.LogError($"Error exporting data to CSV: {exception.Message}");
+            //             response = req.CreateResponse(HttpStatusCode.InternalServerError);
+            //             response.WriteString($"Error: {exception.Message}");
+            //         }
+                    
+            //         break;
+            // }
             try 
             {
-                IEnumerable<OrderEntity> orders = databaseOrderService.GetOrderEntities();
-                
-                using (var writer = new StringWriter())
-                {
-                    var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
-
-                    csv.WriteField("Id");
-                    csv.WriteField("CustomerName");
-                    csv.WriteField("Price");
-                    csv.WriteField("Date");
-                    csv.WriteField("Status");
-                    csv.WriteField("ModifiedStatus");
-
-
-                    foreach (var order in orders)
-                    {
-                        csv.WriteField(order.Id);
-                        csv.WriteField(order.CustomerName);
-                        csv.WriteField(order.Price);
-                        csv.WriteField(order.Status);
-                        csv.WriteField(order.Date);
-                        csv.WriteField(order.ModifiedStatus);
-                        csv.NextRecord();
-                    }
-
-                    response.WriteString(writer.ToString());
-                }
+                response.WriteString(databaseOrderService.ExportToCsv());
             }
             catch(Exception exception)
             {
@@ -64,7 +68,7 @@ namespace OrderTracker.Functions
                 response = req.CreateResponse(HttpStatusCode.InternalServerError);
                 response.WriteString($"Error: {exception.Message}");
             }
-            return response;
+            return response;  
         }
     }
 }

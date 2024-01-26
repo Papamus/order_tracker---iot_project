@@ -13,6 +13,10 @@ namespace OrderTracker.Commands
         OrderEntity UpdateOrderStatus(int id, OrderStatus status);
 
         IEnumerable<OrderEntity> FindOrderByStatus(OrderStatus status);
+
+        string ExportToCsv();
+
+        byte[] ExportToExcel(); 
     }
 
 }
